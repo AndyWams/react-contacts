@@ -1,45 +1,37 @@
-import React, { Component } from 'react'
-import ListContacts from './ListContacts'
+import React, { Component } from "react";
+import ListContacts from "./ListContacts";
+import * as ContactsApi from "./utils/ContactsAPI";
 
 class App extends Component {
   state = {
-    contacts: [
-      {
-        id: 'michael',
-        name: 'Michael Smith',
-        handle: 'mikey',
-        avatarURL: 'http://localhost:5001/michael.jpg',
-      },
-      {
-        id: 'ryan',
-        name: 'Ryan Joe',
-        handle: 'ryanjoe',
-        avatarURL: 'http://localhost:5001/ryan.jpg',
-      },
-      {
-        id: 'tyler',
-        name: 'Tyler McGinnis',
-        handle: 'tylermcginnis',
-        avatarURL: 'http://localhost:5001/tyler.jpg',
-      },
-    ],
+    contacts: [],
+  };
+  componentDidMount() {
+    ContactsApi.getAll().then((contacts) => {
+      console.log(contacts);
+
+      this.setState(() => ({
+        contacts,
+      }));
+    });
   }
 
   removeContact = (contact) => {
     this.setState((prevState) => ({
       contacts: prevState.contacts.filter((c) => {
-        return c.id !== contact.id
+        return c.id !== contact.id;
       }),
-    }))
-  }
+    }));
+    ContactsApi.remove(contact);
+  };
   render() {
     return (
       <ListContacts
         contacts={this.state.contacts}
         onDeleteContact={this.removeContact}
       />
-    )
+    );
   }
 }
 
-export default App
+export default App;

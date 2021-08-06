@@ -81,7 +81,7 @@ body,
 /* ListContacts */
 
 .list-contacts {
-  /* padding-top: 60px; */
+  padding-top: 60px;
 }
 .list-contacts-top {
   position: fixed;
@@ -89,6 +89,7 @@ body,
   top: 0;
   border-bottom: 1px solid #d5d8df;
   display: flex;
+  align-items: center;
 }
 
 .search-contacts {
@@ -106,6 +107,7 @@ body,
 .add-contact {
   display: block;
   width: 73px;
+  height: 60px;
   background: white;
   background-image: url("./icons/person-add.svg");
   background-repeat: no-repeat;

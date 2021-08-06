@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class ListContacts extends Component {
   state = {
@@ -12,6 +13,7 @@ class ListContacts extends Component {
   clearQuery = () => {
     this.updateQuery("");
   };
+
   render() {
     const { query } = this.state;
     const { contacts, onDeleteContact } = this.props;
@@ -23,7 +25,7 @@ class ListContacts extends Component {
           );
     return (
       <div className="list-contacts">
-        <div className="list-contact-top">
+        <div className="list-contacts-top">
           <input
             className="search-contacts"
             type="text"
@@ -31,6 +33,9 @@ class ListContacts extends Component {
             value={query}
             onChange={(event) => this.updateQuery(event.target.value)}
           />
+          <Link to="/create-contact" className="add-contact">
+            Add Contact
+          </Link>
         </div>
         {showingContacts.length !== contacts.length && (
           <div className="showing-contacts">
